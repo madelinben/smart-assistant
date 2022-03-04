@@ -1,7 +1,13 @@
 import speech_recognition
+import pyttsx3
+
+engine = pyttsx3.init()
+voices = engine.getProperty('voices')
+engine.setProperty('voice', voices[1].id)
 
 def respond(responseString):
-    print(responseString)
+    engine.say(responseString)
+    engine.runAndWait()
 
 def process():
     r = speech_recognition.Recognizer()
@@ -29,7 +35,8 @@ def listen():
     if not command:
         respond('Could you say that again please.')
     else:
-        respond()
+        if 'hi' in command:
+            respond('Hello world.')
 
 if __name__ == '__main__':
     while True:
