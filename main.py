@@ -1,5 +1,6 @@
 import speech_recognition
 import pyttsx3
+import datetime
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -35,8 +36,14 @@ def listen():
     if not command:
         respond('Could you say that again please.')
     else:
-        if 'hi' in command:
+        if ('hi' in command) or ('hello' in command):
             respond('Hello world.')
+        elif 'date' in command:
+            date = datetime.datetime.now().strftime('%A %d %B %Y')
+            respond('Todays date is ' + date + '.')
+        elif 'time' in command:
+            time = datetime.datetime.now().strftime('%I:%M %p')
+            respond('The current time is ' + time + '.')
 
 if __name__ == '__main__':
     while True:
