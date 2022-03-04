@@ -1,6 +1,7 @@
 import speech_recognition
 import pyttsx3
 import datetime
+import pyjokes
 
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
@@ -44,6 +45,8 @@ def listen():
         elif 'time' in command:
             time = datetime.datetime.now().strftime('%I:%M %p')
             respond('The current time is ' + time + '.')
+        elif 'joke' in command:
+            respond(pyjokes.get_joke())
 
 if __name__ == '__main__':
     while True:
